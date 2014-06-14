@@ -17,8 +17,11 @@ Usage
     // FROM index
     // WHERE MATCH(
     
-    // @(name, description) ( Ma \-ry AND Jane)
+    // @(name, description) ( Ma \-ry Jane)
     b.addQuery("name, description", SphinxQueryBuilder.QUERY_ESCAPE, Arrays.asList("Ma -ry", "Jane"));
+    
+    // @(name) ( Mary | Jane )
+    b.addQuery("name", SphinxQueryBuilder.QUERY_OR, Arrays.asList("Mary", "Jane"));
     
     // @!(name) Ja\|ne
     b.addQuery("name", SphinxQueryBuilder.QUERY_ESCAPE | SphinxQueryBuilder.QUERY_IGNORE, Arrays.asList("Ja|ne"));

@@ -35,13 +35,15 @@ Usage
     
     // ( d AND e )
     NestedQueryBuilder a = n.stepIntoAND();
-    a.add("name", 0, Arrays.asList("d", "e"));
+    a.add("name", 0, Arrays.asList("d"));
+    a.add("description", 0, Arrays.asList("e"));
     
     // ( x | y )
     NestedQueryBuilder c = n.stepIntoOR();
-    a.add("name", 0, Arrays.asList("x", "y"));
+    a.add("name", 0, Arrays.asList("x"));
+    a.add("description", 0, Arrays.asList("y"));
     
-    // ( @name ( d AND e ) | @name ( x | y ) )
+    // ( ( @name d AND @description e ) | ( @name x OR @description y) )
     b.addQuery(n);
     
     // @name notsu
